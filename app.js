@@ -1,11 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Book = require('./models/Book');
 
-mongoose.connect(
-  "mongodb+srv://libraryUser:lib404@librarycluster.lqldlo5.mongodb.net/?appName=libraryCluster"
-)
-.then(() => console.log("MongoDB Atlas connected"))
-.catch(err => console.error(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Atlas connected"))
+  .catch(err => console.error(err));
 
 async function getAllBooks() {
   const books = await Book.find();
